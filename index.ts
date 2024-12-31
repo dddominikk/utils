@@ -1,14 +1,6 @@
-import * as io from './lib/octokit/initOctokit.ts'
+import * as io from './src/octokit/initOctokit.ts'
 import fetch from 'node-fetch';
-import { hash53 } from './lib/utils/hash53.mjs';
 
-const reqUrl = 'https://api.steampowered.com/ISteamApps/GetAppList/v0001/';
-
-const response = await fetch(reqUrl)
-    .then(res => res.json())
-    .then(x => (console.log(x), x));
-
-    
 
 
 
@@ -25,3 +17,5 @@ export function UtilsTest(config: UtilsTestConfig) {
 type UtilsTestConfig = {
     ratio: number;
 };
+
+type SteamAppListSchema = { appList: { apps: { app: { appid: number, name: string }[] } } };

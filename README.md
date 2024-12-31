@@ -36,6 +36,7 @@ winget install Microsoft.PowerToys --source winget
 
 
 ### NLP Project Structure Example
+- [How to Structure a Machine Learning Project for Optimal MLOps Efficiency](https://medium.com/@craftworkai/how-to-structure-a-machine-learning-project-for-optimal-mlops-efficiency-0046e15ce033)
 ├── api                 # api code to interact with model
 │   └── models          # deployment ready models (copied from models/models)
 ├── config              # project level configurations
