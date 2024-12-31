@@ -1,9 +1,16 @@
 {
+  "type": "module",
   "dependencies": {
     "@octokit/core": "^6.1.2"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon src/index.ts",
+    "start": "node dist/index.js"
   }
 }
