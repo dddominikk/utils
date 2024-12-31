@@ -9,4 +9,6 @@
 */
 
 
-export type KeysMatchingValueTypes<Obj, Value> = {[Key in keyof Obj]-?: Obj[Key] extends Value ? Key : never}[keyof Obj];
+export type KeysMatchingValueTypes<Obj, Value> = {
+    [Key in keyof Obj]-?: Obj[Key] extends Value ? Key : never
+}[keyof Obj];
