@@ -8,10 +8,11 @@ const { appList: { latestHash, local: steamAppsCachePath, remote } } = SteamConf
 
 
 
-//let ae = await syncSteamAppList();
+let steamAppList = await syncSteamAppList();
 
 const cachedCopyExists = fs.existsSync(steamAppsCachePath)
-console.log(cachedCopyExists)
+
+console.trace({ cachedCopyExists, steamAppList });
 
 
 export function UtilsTest(config: UtilsTestConfig) {

@@ -37,4 +37,14 @@ const makeGpCatalogUrl = (params: { id: string, market?: string, language: strin
 
 const getXboxStorePageUrlFromGameId = (id: string) => `https://www.xbox.com/en-us/games/store/\$/${id}`;
 
-export default { GamePassCatalog, makeGpCatalogUrl, getXboxStorePageUrlFromGameId }
+const MsDisplayCatalog = {
+    hostname: 'https://displaycatalog.mp.microsoft.com/v7.0/products',
+    params: [
+        { name: 'bigIds', required: true },
+        { name: 'MS-CV', required: false, default: 'DGU1mcuYo0WMMp+ F.1' },
+        { name: 'market', required: true, default: 'us' },
+        { name: 'languages', required: true, default: 'en-us' }
+    ]
+}
+
+export default { GamePassCatalog, makeGpCatalogUrl, getXboxStorePageUrlFromGameId };

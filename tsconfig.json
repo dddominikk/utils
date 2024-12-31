@@ -1,8 +1,11 @@
 {
   "ts-node": {
     "experimentalSpecifierResolution": "explicit",
-    "esm": true
+    "esm": true,
   },
+  "include": [
+    "./src/config.ts"
+  ],
   "typeAcquisition": {
     "enable": true,
     "include": [
@@ -10,7 +13,8 @@
     ],
     "exclude": [
       ".src/jsdoc",
-      ".src/powwershell"
+      ".src/powwershell",
+      "node_modules"
     ],
   },
   "watchOptions": {
@@ -35,9 +39,22 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
     /* Language and Environment */
     "target": "ESNext", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "plugins": [
+      {
+        "name": "typescript-eslint-language-service"
+      }
+    ],
     "lib": [
       "WebWorker",
       "ES2022.Array",
+      "ES2015.Iterable",
+      "ES2024.Object",
+      "ESNext.Regexp",
+      "ESNext.String",
+      "WebWorker.ImportScripts",
+      "ES2015",
+      "ES2015.Collection",
+      "ES2016.Array.Include"
     ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "jsx": "preserve", /* Specify what JSX code is generated. */
     "experimentalDecorators": true, /* Enable experimental support for legacy experimental decorators. */
@@ -55,7 +72,11 @@
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "bundler", /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
-    // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "paths": {
+      "src": [
+        "./config.ts"
+      ]
+    }, /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
       "./src/types"
@@ -80,7 +101,7 @@
     "declaration": true, /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
     "declarationMap": true, /* Create sourcemaps for d.ts files. */
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
-    "sourceMap": false,                                /* Create source map files for emitted JavaScript files. */
+    "sourceMap": false, /* Create source map files for emitted JavaScript files. */
     // "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
     // "noEmit": true,                                   /* Disable emitting files from a compilation. */
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
@@ -99,7 +120,7 @@
     // "preserveConstEnums": true,                       /* Disable erasing 'const enum' declarations in generated code. */
     "declarationDir": "./types", /* Specify the output directory for generated declaration files. */
     /* Interop Constraints */
-    "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
+    "isolatedModules": true, /* Ensure that each file can be safely transpiled without relying on other imports. */
     // "verbatimModuleSyntax": true,                     /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */
     // "isolatedDeclarations": true,                     /* Require sufficient annotation on exports so other tools can trivially generate declaration files. */
     // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
