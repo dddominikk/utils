@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@octokit/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
+  }
+}
