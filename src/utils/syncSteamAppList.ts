@@ -11,7 +11,8 @@ const exists = promisify(fs.exists);
 
 const { appList: { remote: steamAppsUrl, local: steamAppsCachePath, latestHash } } = SteamConfig;
 
-//const cachedCopyExists = fs.existsSync(steamAppsCachePath)
+
+
 
 export async function syncSteamAppList() {
 
@@ -27,10 +28,14 @@ export async function syncSteamAppList() {
         // Hash the fetched JSON string
         const newHash = hash53(stringified);
 
-        // Check if the cached copy exists
-        const cacheExists = await exists(steamAppsCachePath);
 
-        if (!cacheExists) {
+        const cachedCopyExists = fs.existsSync(steamAppsCachePath)
+        console.log({cachedCopyExists});
+        
+        // Check if the cached copy exists
+        //const cacheExists = await exists(steamAppsCachePath);
+
+        if (!cachedCopyExists) {
             // If no cache exists, write the new file and save the new hash
             await writeFile(steamAppsCachePath, stringified);
             console.log('Cache file created.');
