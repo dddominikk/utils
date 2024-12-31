@@ -8,7 +8,7 @@ export const AirtableConfigs = {
 export const SteamConfig = {
     appList: {
         remote: 'https://api.steampowered.com/ISteamApps/GetAppList/v0001/',
-        local: './data/SteamAppList.json'
+        local: './data/SteamAppList.json',
+        latestHash: null
     }
 }
-

@@ -1,8 +1,9 @@
-export const parseGameRantArticle =/** * @typedef {Record<'Title'|'PostPaymentCategory'|'Description'|'Body'|'Author'|'FeaturedImage', string>} Txts
+const parseGameRantArticle =/** * @typedef {Record<'Title'|'PostPaymentCategory'|'Description'|'Body'|'Author'|'FeaturedImage', string>} Txts
  * @typedef {Record<'PostId'|'PublishedTime'|'ModifiedTime', number>} Nums
  * @typedef {Record<'Tags'|'GlobalCategory', string[]>} Sets
  * @arg link {string} GameRant.com link.
- * @returns {Promise<Partial<Txts & Nums & Sets>>} */ async (link) => {
+ * @arg remoteFetchAsync {(...args) => Promise<Response>}
+ * @returns {Promise<Partial<Txts & Nums & Sets>>} */ async (link, remoteFetchAsync) => {
 
         /** Adds support for the Airtable Scripting Extension-specific fetch method that side-steps CORS issues.
           * The optional remoteFetchAsync dependency must be manually resolved if the module is dynamically imported into a script.
@@ -46,3 +47,4 @@ export const parseGameRantArticle =/** * @typedef {Record<'Title'|'PostPaymentCa
             ));
         return result;
     };
+

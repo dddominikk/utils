@@ -1,11 +1,9 @@
 import * as io from './src/octokit/initOctokit.ts'
 import fetch from 'node-fetch';
+import { syncSteamAppList } from './src/utils/syncSteamAppList.ts';
 
+console.log(syncSteamAppList)
 
-
-
-
-//console.log(io);
 
 export function UtilsTest(config: UtilsTestConfig) {
     const result = `Ok, Mr. ${config.ratio}!`;

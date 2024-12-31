@@ -1,5 +1,7 @@
-/**@type {(url:string)=>Promise<Reddit_Api_Embed_Response>} */
-export const requestRedditEmbed = (fromUrl) => {
+
+
+/**@type {(url:string, fn: Function)=>Promise<Reddit_Api_Embed_Response>} */
+export const requestRedditEmbed = (fromUrl, remoteFetchAsync) => {
     const endpoint = `https://www.reddit.com/oembed?url=${fromUrl}`;
     const request = typeof remoteFetchAsync === 'function' ? remoteFetchAsync : fetch;
     return request(endpoint).then(data => data.json());
