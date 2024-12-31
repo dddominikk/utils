@@ -1,5 +1,6 @@
+import * as io from './lib/octokit/initOctokit.ts'
 
-
+console.log(io);
 
 export function UtilsTest(config: UtilsTestConfig) {
     const result = `Ok, Mr. ${config.ratio}!`;
