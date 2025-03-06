@@ -1,0 +1,51 @@
+/// <reference lib="webworker"/>
+const { default: ICAL } = await import('https://esm.run/ical.js');
+
+/** 
+ * @typedef {new (...args: any[]) => any} ConstructorType
+ * @typedef {(...args) => Promise<Response>} ffMethod
+ * @typedef {{fetchMethod?: ffMethod, callback?: (...args) => Promise<unknown>, init?: Record<'headers'|string,unknown> }} ffInit
+ */
+
+/** @type {(url:string, options: ffInit) => Promise<Response|string|ReturnType<JSON['parse']> >} */
+async function fetchFile(url, options) {
+    const {
+        fetchMethod = remoteFetchAsync || fetch,
+        callback = x => x,
+        init,
+    } = options;
+
+    return fetchMethod(url, { ...init }).then(callback);
+};
+
+
+/**
+ * @typedef PvCal - Fetches a remote ICS file and converts it into a JSON object.
+ * @type {[vCalName: string, vCalProps: (string|object)[]![], vCalSubcomponents: (PvCal|PvCal[])[]]}
+ * @arg {string} icsText
+ * @arg {Record<'Component'|'Event', ConstructorType> & {parse: (x:string) => PvCal }} ICAL
+ */
+export function icsToJson(icsText, ICAL) {
+    const { parse, Component, Event } = ICAL || this?.ICAL || this;
+    /** @type PvCal */
+    const jcalData = parse(icsText)
+    const components = jcalData[2] || []; // Extract subcomponents manually
+    const events = components
+        /**Find only VEVENT components*/
+        .filter(comp => comp[0] === 'vevent')
+        .map(eventData => {
+            const vevent = new Component(eventData);
+            const event = new Event(vevent);
+            return {
+                summary: event.summary || '',
+                description: event.description || '',
+                start: event.startDate ? event.startDate.toString() : null,
+                end: event.endDate ? event.endDate.toString() : null,
+                location: event.location || '',
+                attendees: event.attendees ? event.attendees.map(a => a.toString()) : [],
+                uid: event.uid || ''
+            };
+        });
+
+    return events;
+};
